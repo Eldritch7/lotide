@@ -1,15 +1,17 @@
-//assertEqual Function
-const assertEqual = function(actual, expected) {
-  if (actual === expected) {
-    return console.log(`✅👌 Assertion Passed: ${actual} === ${expected}.`);
-  } else if (actual !== expected) {
-    return console.log(`⛔🔥 Assertion Failed: ${actual} !== ${expected}.`);
-  }
-};
+
+
+//Import
+const assertEqual = require('./assertEqual');
 
 //Head Function
 const head = function(array) {
-  return array [0];
+  if (!Array.isArray(array) || array === []) {
+    return undefined;
+  } else if (Array.isArray(array)) {
+
+    return array [0];
+ 
+  }
 };
 
 
