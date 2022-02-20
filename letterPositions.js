@@ -9,7 +9,7 @@ const letterPositions = function(string) {
     if (input[i] === " ") {
       continue;
     } else if (object[input[i]]) {
-      //console.log(input[i]);
+      
       object[input[i]].push(i);
 
     } else {
