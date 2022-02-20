@@ -1,91 +1,85 @@
-//  FUNCTION IMPLEMENTATION
-const assertEqual = function(actual, expected) {
-  if (actual === expected) {
-    return console.log(`✅👌 Assertion Passed: ${actual} === ${expected}.`);
-  } else if (actual !== expected) {
-    return console.log(`⛔🔥 Assertion Failed: ${actual} !== ${expected}.`);
-  }
-};
+const assertEqual = require('./assertEqual');
+const eqObjects = require('./eqObjects');
 
-//Equal Arrays
-const eqArrays = function(array1, array2) {
-  if (array1.length !== array2.length) {
+
+// //  FUNCTION IMPLEMENTATION
+// // const assertEqual = function(actual, expected) {
+// //   if (actual === expected) {
+// //     return console.log(`✅👌 Assertion Passed: ${actual} === ${expected}.`);
+// //   } else if (actual !== expected) {
+// //     return console.log(`⛔🔥 Assertion Failed: ${actual} !== ${expected}.`);
+// //   }
+// // };
+
+// //Equal Arrays
+// const eqArrays = function(array1, array2) {
+//   if (array1.length !== array2.length) {
    
-    return false;
-  }
-  let equalArrayBool;
+//     return false;
+//   }
+//   let equalArrayBool;
   
-  /*for (let i = 0; i <= array1.length; i++) {
-    if (array1[i] !== array2[i]) {
-      console.log("array1 is", array1[i], "array 2 is", array2[i]);
-      //console.log('def');
-      return false;
-      //return false;
-    } else {
-      equalArrayBool = true;
-    }
 
-  } */
 
-  for (let i = 0; i <= array1.length; i++) {
-    if (array1[i] !== array2[i]) {
-      //console.log("array1 is", array1[i], "array 2 is", array2[i]);
-      //console.log('def');
-      equalArrayBool = false;
-      //break;
-      return equalArrayBool;
-    } else {
-      equalArrayBool = true;
-    }
-  }
-  //console.log('ghi', equalArrayBool);
-  return equalArrayBool;
+//   for (let i = 0; i <= array1.length; i++) {
+//     if (array1[i] !== array2[i]) {
+//       //console.log("array1 is", array1[i], "array 2 is", array2[i]);
+//       //console.log('def');
+//       equalArrayBool = false;
+//       //break;
+//       return equalArrayBool;
+//     } else {
+//       equalArrayBool = true;
+//     }
+//   }
+//   //console.log('ghi', equalArrayBool);
+//   return equalArrayBool;
   
-};
+// };
 
-//EQUAL OBJECTS
-// Returns true if both objects have identical keys with identical values.
-// Otherwise you get back a big fat false!
-const eqObjects = function(object1, object2) {
+// //EQUAL OBJECTS
+// // Returns true if both objects have identical keys with identical values.
+// // Otherwise you get back a big fat false!
+// const eqObjects = function(object1, object2) {
 
-  if (Object.keys(object1).length !== Object.keys(object2).length) {
-    return false;
-  }
-  let equalObjectBool;
-  for (let key1 of Object.keys(object1)) {
+//   if (Object.keys(object1).length !== Object.keys(object2).length) {
+//     return false;
+//   }
+//   let equalObjectBool;
+//   for (let key1 of Object.keys(object1)) {
     
-    if (Array.isArray(object1[key1]) && Array.isArray(object2[key1])) {
+//     if (Array.isArray(object1[key1]) && Array.isArray(object2[key1])) {
    
-      if (!eqArrays(object1[key1], object2[key1])) {
-        equalObjectBool = false;
+//       if (!eqArrays(object1[key1], object2[key1])) {
+//         equalObjectBool = false;
           
-        //return false;
-      } else {
-        equalObjectBool = true;
-        //return true;
-      }
-    }  else if (object1[key1] !== object2[key1]) {
+//         //return false;
+//       } else {
+//         equalObjectBool = true;
+//         //return true;
+//       }
+//     }  else if (object1[key1] !== object2[key1]) {
    
-      const anything = eqArrays(object1[key1], object2[key1]);
-      if (anything) {
-        equalObjectBool = true;
-      } else {
-        equalObjectBool = false;
-      }
+//       const anything = eqArrays(object1[key1], object2[key1]);
+//       if (anything) {
+//         equalObjectBool = true;
+//       } else {
+//         equalObjectBool = false;
+//       }
      
-      equalObjectBool = false;
-      break;
+//       equalObjectBool = false;
+//       break;
       
-    }  else {
-      equalObjectBool = true;
+//     }  else {
+//       equalObjectBool = true;
      
-    }
-  }
-  return equalObjectBool;
+//     }
+//   }
+//   return equalObjectBool;
  
   
 
-};
+// };
 
 // FUNCTION IMPLEMENTATION
 const assertObjectsEqual = function(actual, expected) {
@@ -99,16 +93,8 @@ const assertObjectsEqual = function(actual, expected) {
   
 };
 
+module.exports = assertObjectsEqual;
 
-//Test Code
-const ab = { a: "bird", b: "cat" };
-const ba = { b: "cat", a: "bird" };
-const baFalse = {b: "rat", a: "bird"};
-//console.log(eqObjects(ab, ba)); // => true
-assertEqual(eqObjects(ab, ba), true);
-assertEqual(eqObjects(ba, baFalse), false);
-assertObjectsEqual(ab, ba);
-assertObjectsEqual(ba, baFalse);
 
 //Test Code
 /*

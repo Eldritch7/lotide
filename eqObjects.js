@@ -1,47 +1,50 @@
-//  FUNCTION IMPLEMENTATION
-const assertEqual = function(actual, expected) {
-  if (actual === expected) {
-    return console.log(`✅👌 Assertion Passed: ${actual} === ${expected}.`);
-  } else if (actual !== expected) {
-    return console.log(`⛔🔥 Assertion Failed: ${actual} !== ${expected}.`);
-  }
-};
+//Import
+const assertEqual = require('./assertEqual');
+// //  FUNCTION IMPLEMENTATION
+// const assertEqual = function(actual, expected) {
+//   if (actual === expected) {
+//     return console.log(`✅👌 Assertion Passed: ${actual} === ${expected}.`);
+//   } else if (actual !== expected) {
+//     return console.log(`⛔🔥 Assertion Failed: ${actual} !== ${expected}.`);
+//   }
+// };
+const eqArrays = require('./eqArrays');
 
-//Equal Arrays
-const eqArrays = function(array1, array2) {
-  if (array1.length !== array2.length) {
+// //Equal Arrays
+// const eqArrays = function(array1, array2) {
+//   if (array1.length !== array2.length) {
    
-    return false;
-  }
-  let equalArrayBool;
+//     return false;
+//   }
+//   let equalArrayBool;
   
-  /*for (let i = 0; i <= array1.length; i++) {
-    if (array1[i] !== array2[i]) {
-      console.log("array1 is", array1[i], "array 2 is", array2[i]);
-      //console.log('def');
-      return false;
-      //return false;
-    } else {
-      equalArrayBool = true;
-    }
+//   /*for (let i = 0; i <= array1.length; i++) {
+//     if (array1[i] !== array2[i]) {
+//       console.log("array1 is", array1[i], "array 2 is", array2[i]);
+//       //console.log('def');
+//       return false;
+//       //return false;
+//     } else {
+//       equalArrayBool = true;
+//     }
 
-  } */
+//   } */
 
-  for (let i = 0; i<= array1.length; i++) {
-    if (array1[i] !== array2[i]) {
-      console.log("array1 is", array1[i], "array 2 is", array2[i]);
-      //console.log('def');
-      equalArrayBool = false;
-      //break;
-      return equalArrayBool;
-    } else {
-      equalArrayBool = true;
-    } 
-  }
-  //console.log('ghi', equalArrayBool);
-  return equalArrayBool;
+//   for (let i = 0; i<= array1.length; i++) {
+//     if (array1[i] !== array2[i]) {
+//       console.log("array1 is", array1[i], "array 2 is", array2[i]);
+//       //console.log('def');
+//       equalArrayBool = false;
+//       //break;
+//       return equalArrayBool;
+//     } else {
+//       equalArrayBool = true;
+//     } 
+//   }
+//   //console.log('ghi', equalArrayBool);
+//   return equalArrayBool;
   
-};
+// };
 
 //EQUAL OBJECTS
 // Returns true if both objects have identical keys with identical values.
@@ -49,9 +52,9 @@ const eqArrays = function(array1, array2) {
 const eqObjects = function(object1, object2) {
 
   if (Object.keys(object1).length !== Object.keys(object2).length) {
-    return false;
+    return false; 
   }
-  let equalObjectBool;
+  let equalObjectBool; 
   for (let key1 of Object.keys(object1)) {
     
     if (Array.isArray(object1[key1]) && Array.isArray(object2[key1])) {
@@ -65,15 +68,15 @@ const eqObjects = function(object1, object2) {
         //return true;
       }
     }  else if (object1[key1] !== object2[key1]) {
-      console.log("objectKey1", object1[key1]);
-      console.log("objectKey2", object2[key1]);
-      const anything = eqArrays(object1[key1], object2[key1]);
-      if (anything) {
+      //console.log("objectKey1", object1[key1]);
+      //console.log("objectKey2", object2[key1]);
+      const objsAtKey = eqArrays(object1[key1], object2[key1]);
+      if (objsAtKey) {
         equalObjectBool = true;
       } else {
         equalObjectBool = false;
       }
-      console.log("anything",anything);
+      //console.log("objsAtKey",objsAtKey);
       equalObjectBool = false;
       break;
       
@@ -88,28 +91,9 @@ const eqObjects = function(object1, object2) {
 
 };
   
+module.exports = eqObjects;
 
 
-//Test Code
-const ab = { a: "bird", b: "cat" };
-const ba = { b: "cat", a: "bird" };
-const baFalse = {b: "rat", a: "bird"};
-console.log(eqObjects(ab, ba)); // => true
-assertEqual(eqObjects(ab, ba), true);
-assertEqual(eqObjects(ba, baFalse), false);
-
-const abc = { a: "bird", b: "cat", c: "fox" };
-console.log(eqObjects(ab, abc)); // => false
-assertEqual(eqObjects(ab,abc), false);
-
-const cd = { c: "1", dx: ["2", 3] };
-const dc = { dx: ["2", 3], c: "1" };
-console.log(eqObjects(cd, dc)); // => true
-assertEqual(eqObjects(cd, dc), true);
-
-const cd2 = { c: "1", dx: ["2", 3, 4] };
-console.log(eqObjects(cd, cd2)); // => false
-assertEqual(eqObjects(cd, cd2), false);
 
 
 

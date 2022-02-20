@@ -1,11 +1,6 @@
-//  FUNCTION IMPLEMENTATION
-const assertEqual = function(actual, expected) {
-  if (actual === expected) {
-    return console.log(`✅👌 Assertion Passed: ${actual} === ${expected}.`);
-  } else if (actual !== expected) {
-    return console.log(`⛔🔥 Assertion Failed: ${actual} !== ${expected}.`);
-  }
-};
+const { findKey } = require(".");
+
+
 
 //Code findKeyByValue
 // Implement the function findKeyByValue which takes in an object and a value.
@@ -21,21 +16,5 @@ const findKeyByValue = function(object, value) {
     }
   }
 };
+module.exports = findKeyByValue;
 
-//Test Code
-const bestTVShowsByGenre = {
-  sci_fi: "The Expanse",
-  comedy: "Brooklyn Nine-Nine",
-  drama:  "The Wire"
-};
-
-assertEqual(findKeyByValue(bestTVShowsByGenre, "The Wire"), "drama");
-assertEqual(findKeyByValue(bestTVShowsByGenre, "That '70s Show"), undefined);
-
-const birdTypes = {
-  small: "Budgie",
-  medium: "Cockateil",
-  large: "African Grey"
-};
-assertEqual(findKeyByValue(birdTypes, "Budgie"), "small");
-assertEqual(findKeyByValue(birdTypes, "Finch"), undefined);
